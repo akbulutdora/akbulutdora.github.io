@@ -4,7 +4,8 @@ mdbook build
 # Switch to the main branch
 git checkout main
 # Copy the contents of the book directory to the root directory
-cp -r ./book/* ../.
+cd ..
+cp -r ./blog/book/* ../.
 # Add all new files
 git add .
 # Commit the changes
