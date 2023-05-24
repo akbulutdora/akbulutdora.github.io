@@ -1,0 +1,6 @@
+[book]
+authors = ["Dora Akbulut"]
+language = "en"
+multilingual = false
+src = "src"
+title = "thoughtassault-blog"
