@@ -1,3 +1,4 @@
 # Summary
 [Hello](./hello.md)
-- [Chapter 1](./chapter_1.md)
+# Learning Rust
+- [1. Message passing between a client and a server](./project_1.md)
