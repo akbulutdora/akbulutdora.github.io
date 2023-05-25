@@ -122,7 +122,7 @@ While trying to learn about this, I read [something on the Rust book](https://do
 > One increasingly popular approach to ensuring safe concurrency is message passing, where threads or actors communicate by sending each other messages containing data.
 > Here’s the idea in a slogan from the Go language documentation: *“Do not communicate by sharing memory; instead, share memory by communicating.”*
 
-I love #golang, and seeing a wink to its docs made my day.
+I love Go, and seeing a wink to its docs made my day.
 
 ## Fourth attempt
 

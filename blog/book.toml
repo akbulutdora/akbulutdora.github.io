@@ -4,3 +4,5 @@ language = "en"
 multilingual = false
 src = "src"
 title = "thoughtassault-blog"
+[output.html.playground]
+runnable = false
