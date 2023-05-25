@@ -26,7 +26,6 @@ Upcarta Mobile will be on app stores soon. I can share a test link if you want t
 
 
 ## Today
-
-Now, I am learning Rust, and am open to Rust developer positions.
+Working on Upcarta, learning Rust. I am open to Rust developer positions.
 
 This will also be a blog for me to organize and share my learning process/progress, food for thought and thought for food.
