@@ -1,8 +1,8 @@
-# 1. Message passing between threads
+# 1. Passing messages between threads
 
 I am trying to implement simple message-passing channels in Rust. I want to share/log my learning progress. I think it will be fun to return to it in some months/years.
 
-Note: I am a complete beginner to Rust and haven't dealt with this sort of concurrency before.
+**Note:** I am a complete beginner to Rust and haven't dealt with this sort of concurrency before.
 
 The task is simple: I will have two channels running on different threads or running as concurrent processes. 
 One of them will be the client, asking for the amount of ice cream the server has. Client's actions can be triggered by command line inputs.

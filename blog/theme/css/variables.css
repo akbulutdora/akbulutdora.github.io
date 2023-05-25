@@ -13,42 +13,45 @@
 /* Themes */
 .thoughtassault {
     --bg: #181818;
-    --fg: #E1E5F2;
+    --fg: #D6D6DC;
 
-    --sidebar-bg: #282d3f;
-    --sidebar-fg: #c8c9db;
-    --sidebar-non-existant: #505274;
+    --sidebar-bg: #1e1e1e;
+    --sidebar-fg: #D6D6DC;
+    --sidebar-non-existant: #636363;
     --sidebar-active: #DF5B43;
-    --sidebar-spacer: #2d334f;
+    --sidebar-spacer: #333333;
 
     --scrollbar: var(--sidebar-fg);
 
+    /* TODO take a look at this */
     --icons: #737480;
+    /* TODO take a look at this */
     --icons-hover: #b7b9cc;
 
     --links: #DF5B43;
 
     --inline-code-color: #DF5B43;
 
-    --theme-popup-bg: #161923;
-    --theme-popup-border: #737480;
-    --theme-hover: #282e40;
+    --theme-popup-bg: #1e1e1e;
+    --theme-popup-border: #636363;
+    --theme-hover: #333333;
 
-    --quote-bg: hsl(226, 15%, 17%);
-    --quote-border: hsl(226, 15%, 22%);
+    /* TODO take a look at this */
+    --quote-bg: #1e1e1e;
+    --quote-border: #333333;
 
     --table-border-color: hsl(226, 23%, 16%);
     --table-header-bg: hsl(226, 23%, 31%);
     --table-alternate-bg: hsl(226, 23%, 14%);
 
-    --searchbar-border-color: #aaa;
-    --searchbar-bg: #aeaec6;
-    --searchbar-fg: #000;
-    --searchbar-shadow-color: #aaa;
-    --searchresults-header-fg: #5f5f71;
-    --searchresults-border-color: #5c5c68;
+    --searchbar-border-color: #636363;
+    --searchbar-bg: #333333;
+    --searchbar-fg: #D6D6DC;
+    --searchbar-shadow-color: #636363;
+    --searchresults-header-fg: #636363;
+    --searchresults-border-color: #636363;
     --searchresults-li-bg: #242430;
-    --search-mark-bg: #a2cff5;
+    --search-mark-bg: #636363;
 }
 
 .ayu {
