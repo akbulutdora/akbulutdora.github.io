@@ -6,6 +6,7 @@ mdbook build
 # Copy the contents of the book directory to the root directory
 cd ..
 cp -r ./blog/book/* .
+rm -r ./blog/book/
 # Add all new files
 git add .
 # Commit the changes
