@@ -2,6 +2,8 @@
 
 My name is Dora, and I am a software developer from Turkey.
 
+[twitter](https://twitter.com/alleinany) - [github](https://github.com/akbulutdora)
+
 ## Education
 ### Undergrad
 I graduated with a BSc in **Computer Science** and Minor in **Philosophy** from **Sabanci University** in January 2023.
@@ -12,9 +14,9 @@ I graduated with a BSc in **Computer Science** and Minor in **Philosophy** from 
 This project aimed to be a pioneer in Turkish NLP, as it was one of the first works on Turkish Financial Sentiment Analysis. I built scrapers for financial news websites and stock market movements. Then I tried to apply NER to the data I collected. The internship ended due to time constraints before I could complete the project.
 I worked with Python.
 
-I was very inexperienced and mostly confused. I was very dependent on my supervisor and she was quite busy, so things did not really go as I wanted them to go.
+I was completely inexperienced and mostly confused. I was very dependent on my supervisor and she was quite busy, so things did not really go as I wanted them to go.
 
-### **Visiting Researcher Intern** @ **The University of Kent** (Summer 2022)
+### **Visiting Researcher Intern** @ **University of Kent** (Summer 2022)
 At Kent, I was responsible with implementing a tool to collect data about DDoS protection adoption across the internet. I used Go, MongoDB and GCC. 
 Since the tool was meant to scan the a huge number of domains weekly, it had to be performant. I benchmarked several approaches and libraries.
 
