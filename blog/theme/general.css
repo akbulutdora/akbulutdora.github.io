@@ -1,0 +1,3 @@
+body[data-theme="thoughtassault"] {
+    background-color: var(--bg-color);
+}

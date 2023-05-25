@@ -6,3 +6,6 @@ src = "src"
 title = "thoughtassault-blog"
 [output.html.playground]
 runnable = false
+[output.html]
+theme = "theme"
+default-theme = "thoughtassault"
