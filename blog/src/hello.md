@@ -2,14 +2,10 @@
 
 My name is Dora, and I am a software developer from Turkey.
 
-I recently graduated from Sabanci University, Istanbul.
-<<<<<<< Updated upstream
-I have two internship experiences:
-- NLP INTERN @ **YAZI AI**: This work aimed to be a pioneer in Turkish NLP, as it was one of the first works on Turkish Financial Sentiment Analysis. I built scrapers for financial news websites and stock market movements. Then I tried to apply NER to the data I collected. The internship ended due to time constraints before I could complete the project.
-- Visiting Researcher Intern @ **The University of Kent**:
+## Education
+### Undergrad
+BSc in Computer Science & Minor in Philosophy from Sabanci University (January 2023).
 
-For the past year, I have been developing the mobile app of [upcarta](https://www.upcarta.com/).
-=======
 ## Work Experience
 ### **NLP INTERN** @ **YAZI AI** (Summer 2021)
 This project aimed to be a pioneer in Turkish NLP, as it was one of the first works on Turkish Financial Sentiment Analysis. I built scrapers for financial news websites and stock market movements. Then I tried to apply NER to the data I collected. The internship ended due to time constraints before I could complete the project.
@@ -27,7 +23,7 @@ For the past year, I have been developing the mobile app of upcarta. We use Flut
 I learned Flutter all by myself and taught the rest of the team on the go. I had to make the architectural and stylistic decisions, and the Flutter framework didn't/doesn't really have many best practices and idiomatic ways to guide us. It was quite a challenge.
 
 Upcarta Mobile will be on app stores soon. I can share a test link if you want to try upcarta.
->>>>>>> Stashed changes
+
 
 ## Today
 
