@@ -9,10 +9,12 @@ One of them will be the client, asking for the amount of ice cream the server ha
 
 The server will tell the client how much ice cream it has. The ice cream is 1kg to begin with, and melts by 10g each second. Bonus: each question can decrease the amount of ice cream by 20g. This will force the server to implement some kind of concurrent operation handling.
 
-## First try 
+## First try
 I read [tokio docs](https://tokio.rs/tokio/tutorial/channels). I initialize the channel, and pass the transmitter and receiver to the tasks I spawn in the main thread (which felt intuitive). But the program immediately ends. No messages after the initial "Let's go!" are printed.
 
 ```rust
+use tokio::sync::mpsc;
+
 #[tokio::main]
 async fn main() {
     println!("Let's go!");
@@ -46,12 +48,14 @@ async fn run_client(tx: mpsc::Sender<String>) {
 
 I think the problem with this was that my program was not waiting for any of the tasks I spawned. It just started the threads, and there was nothing else to do, so it returned.
 
-## Second attempt
+## Second try
 Run the server in the main thread and wait for it to complete. This works, but I think I am blocking the main thread with the server.
 
 Also I got the intuition that once the function owning the transmitter (client) returns, it is dropped, so the channel is closed.
 
 ```rust
+use tokio::sync::mpsc;
+
 #[tokio::main]
 async fn main() {
     println!("Let's go!");
@@ -79,10 +83,12 @@ async fn run_client(tx: mpsc::Sender<String>) {
 }
 ```
 
-## Third attempt
+## Third try
 I spawn a new task for the server and wait for it to complete. This works, but I don't really understand why. I don't know if I am blocking the main thread as well. I also feel like there is a cleaner way to do this. Added understanding this thoroughly to my task.
 
 ```rust
+use tokio::sync::mpsc;
+
 #[tokio::main]
 async fn main() {
     println!("Let's go!");
@@ -124,7 +130,7 @@ While trying to learn about this, I read [something on the Rust book](https://do
 
 I love Go, and seeing a wink to its docs made my day.
 
-## Fourth attempt
+## Final attempt
 
 I did some improvements and kinda nailed the task. The #rustlang discord community helped me.
 
@@ -138,6 +144,9 @@ I didn't understand when to use `join!` exactly, but I understand what's going o
 Here is what I did with what I've learnt:
 
 ```rust
+use tokio::sync::{mpsc, oneshot};
+use tokio::time::{self, Duration, Instant};
+
 #[tokio::main]
 async fn main() {
     println!("Let's go!");

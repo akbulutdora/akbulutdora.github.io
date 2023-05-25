@@ -175,7 +175,9 @@ One of them will be the client, asking for the amount of ice cream the server ha
 <p>The server will tell the client how much ice cream it has. The ice cream is 1kg to begin with, and melts by 10g each second. Bonus: each question can decrease the amount of ice cream by 20g. This will force the server to implement some kind of concurrent operation handling.</p>
 <h2 id="first-try"><a class="header" href="#first-try">First try</a></h2>
 <p>I read <a href="https://tokio.rs/tokio/tutorial/channels">tokio docs</a>. I initialize the channel, and pass the transmitter and receiver to the tasks I spawn in the main thread (which felt intuitive). But the program immediately ends. No messages after the initial &quot;Let's go!&quot; are printed.</p>
-<pre><code class="language-rust">#[tokio::main]
+<pre><code class="language-rust">use tokio::sync::mpsc;
+
+#[tokio::main]
 async fn main() {
     println!(&quot;Let's go!&quot;);
     // Create the channel
@@ -205,10 +207,12 @@ async fn run_client(tx: mpsc::Sender&lt;String&gt;) {
         .unwrap();
 }</code></pre>
 <p>I think the problem with this was that my program was not waiting for any of the tasks I spawned. It just started the threads, and there was nothing else to do, so it returned.</p>
-<h2 id="second-attempt"><a class="header" href="#second-attempt">Second attempt</a></h2>
+<h2 id="second-try"><a class="header" href="#second-try">Second try</a></h2>
 <p>Run the server in the main thread and wait for it to complete. This works, but I think I am blocking the main thread with the server.</p>
 <p>Also I got the intuition that once the function owning the transmitter (client) returns, it is dropped, so the channel is closed.</p>
-<pre><code class="language-rust">#[tokio::main]
+<pre><code class="language-rust">use tokio::sync::mpsc;
+
+#[tokio::main]
 async fn main() {
     println!(&quot;Let's go!&quot;);
     let (tx, rx) = mpsc::channel(8);
@@ -233,9 +237,11 @@ async fn run_client(tx: mpsc::Sender&lt;String&gt;) {
     let msg = String::from(&quot;Hello ice cream guy&quot;);
     tx.send(msg).await.expect(&quot;can not send user on channel&quot;);
 }</code></pre>
-<h2 id="third-attempt"><a class="header" href="#third-attempt">Third attempt</a></h2>
+<h2 id="third-try"><a class="header" href="#third-try">Third try</a></h2>
 <p>I spawn a new task for the server and wait for it to complete. This works, but I don't really understand why. I don't know if I am blocking the main thread as well. I also feel like there is a cleaner way to do this. Added understanding this thoroughly to my task.</p>
-<pre><code class="language-rust">#[tokio::main]
+<pre><code class="language-rust">use tokio::sync::mpsc;
+
+#[tokio::main]
 async fn main() {
     println!(&quot;Let's go!&quot;);
     let (tx, rx) = mpsc::channel(8);
@@ -273,7 +279,7 @@ async fn run_client(tx: mpsc::Sender&lt;String&gt;) {
 Here’s the idea in a slogan from the Go language documentation: <em>“Do not communicate by sharing memory; instead, share memory by communicating.”</em></p>
 </blockquote>
 <p>I love Go, and seeing a wink to its docs made my day.</p>
-<h2 id="fourth-attempt"><a class="header" href="#fourth-attempt">Fourth attempt</a></h2>
+<h2 id="final-attempt"><a class="header" href="#final-attempt">Final attempt</a></h2>
 <p>I did some improvements and kinda nailed the task. The #rustlang discord community helped me.</p>
 <p>I learned from them a couple of things:</p>
 <ol>
@@ -286,7 +292,10 @@ Here’s the idea in a slogan from the Go language documentation: <em>“Do not 
 </ol>
 <p>I didn't understand when to use <code>join!</code> exactly, but I understand what's going on with my code.</p>
 <p>Here is what I did with what I've learnt:</p>
-<pre><code class="language-rust">#[tokio::main]
+<pre><code class="language-rust">use tokio::sync::{mpsc, oneshot};
+use tokio::time::{self, Duration, Instant};
+
+#[tokio::main]
 async fn main() {
     println!(&quot;Let's go!&quot;);
     let (tx, rx) = mpsc::channel(8);
