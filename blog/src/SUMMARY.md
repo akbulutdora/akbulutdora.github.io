@@ -1,5 +1,5 @@
 # Summary
 [Hello](./hello.md)
 # Learning Rust
-- [Message passing between a client and a server](./project_1.md)
+- [Message passing between threads](./1_mpbt.md)
 - [Improvement on message passing: Requesting arbitrary data]()

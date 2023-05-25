@@ -1,4 +1,4 @@
-# 1. Message passing between a client and a server
+# 1. Message passing between threads
 
 I am trying to implement simple message-passing channels in Rust. I want to share/log my learning progress. I think it will be fun to return to it in some months/years.
 
