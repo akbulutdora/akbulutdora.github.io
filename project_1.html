@@ -152,7 +152,7 @@ One of them will be the client, asking for the amount of ice cream the server ha
 <p>The server will tell the client how much ice cream it has. The ice cream is 1kg to begin with, and melts by 10g each second. Bonus: each question can decrease the amount of ice cream by 20g. This will force the server to implement some kind of concurrent operation handling.</p>
 <h2 id="first-try"><a class="header" href="#first-try">First try</a></h2>
 <p>I read <a href="https://tokio.rs/tokio/tutorial/channels">tokio docs</a>. I initialize the channel, and pass the transmitter and receiver to the tasks I spawn in the main thread (which felt intuitive). But the program immediately ends. No messages after the initial &quot;Let's go!&quot; are printed.</p>
-<pre><pre class="playground"><code class="language-rust">#[tokio::main]
+<pre><code class="language-rust">#[tokio::main]
 async fn main() {
     println!(&quot;Let's go!&quot;);
     // Create the channel
@@ -180,12 +180,12 @@ async fn run_client(tx: mpsc::Sender&lt;String&gt;) {
     tx.send(&quot;sending from first handle&quot;.to_owned())
         .await
         .unwrap();
-}</code></pre></pre>
+}</code></pre>
 <p>I think the problem with this was that my program was not waiting for any of the tasks I spawned. It just started the threads, and there was nothing else to do, so it returned.</p>
 <h2 id="second-attempt"><a class="header" href="#second-attempt">Second attempt</a></h2>
 <p>Run the server in the main thread and wait for it to complete. This works, but I think I am blocking the main thread with the server.</p>
 <p>Also I got the intuition that once the function owning the transmitter (client) returns, it is dropped, so the channel is closed.</p>
-<pre><pre class="playground"><code class="language-rust">#[tokio::main]
+<pre><code class="language-rust">#[tokio::main]
 async fn main() {
     println!(&quot;Let's go!&quot;);
     let (tx, rx) = mpsc::channel(8);
@@ -209,10 +209,10 @@ async fn run_client(tx: mpsc::Sender&lt;String&gt;) {
     tokio::time::sleep(tokio::time::Duration::from_secs(2)).await;
     let msg = String::from(&quot;Hello ice cream guy&quot;);
     tx.send(msg).await.expect(&quot;can not send user on channel&quot;);
-}</code></pre></pre>
+}</code></pre>
 <h2 id="third-attempt"><a class="header" href="#third-attempt">Third attempt</a></h2>
 <p>I spawn a new task for the server and wait for it to complete. This works, but I don't really understand why. I don't know if I am blocking the main thread as well. I also feel like there is a cleaner way to do this. Added understanding this thoroughly to my task.</p>
-<pre><pre class="playground"><code class="language-rust">#[tokio::main]
+<pre><code class="language-rust">#[tokio::main]
 async fn main() {
     println!(&quot;Let's go!&quot;);
     let (tx, rx) = mpsc::channel(8);
@@ -242,14 +242,14 @@ async fn run_client(tx: mpsc::Sender&lt;String&gt;) {
     let msg = String::from(&quot;Hello ice cream guy&quot;);
 
     tx.send(msg).await.expect(&quot;can not send user on channel&quot;);
-}</code></pre></pre>
+}</code></pre>
 <p><strong>Minor update:</strong> I confirmed my hunch that when the function using the transmitter returns, the channel is closed.</p>
 <p>While trying to learn about this, I read <a href="https://doc.rust-lang.org/book/ch16-02-message-passing.html">something on the Rust book</a> that excited me:</p>
 <blockquote>
 <p>One increasingly popular approach to ensuring safe concurrency is message passing, where threads or actors communicate by sending each other messages containing data.
 Here’s the idea in a slogan from the Go language documentation: <em>“Do not communicate by sharing memory; instead, share memory by communicating.”</em></p>
 </blockquote>
-<p>I love #golang, and seeing a wink to its docs made my day.</p>
+<p>I love Go, and seeing a wink to its docs made my day.</p>
 <h2 id="fourth-attempt"><a class="header" href="#fourth-attempt">Fourth attempt</a></h2>
 <p>I did some improvements and kinda nailed the task. The #rustlang discord community helped me.</p>
 <p>I learned from them a couple of things:</p>
@@ -263,7 +263,7 @@ Here’s the idea in a slogan from the Go language documentation: <em>“Do not 
 </ol>
 <p>I didn't understand when to use <code>join!</code> exactly, but I understand what's going on with my code.</p>
 <p>Here is what I did with what I've learnt:</p>
-<pre><pre class="playground"><code class="language-rust">#[tokio::main]
+<pre><code class="language-rust">#[tokio::main]
 async fn main() {
     println!(&quot;Let's go!&quot;);
     let (tx, rx) = mpsc::channel(8);
@@ -273,22 +273,17 @@ async fn main() {
 
     client.await.unwrap();
     server.await.unwrap(); // The main thread will not return until server returns. 
-}</code></pre></pre>
+}</code></pre>
 <p><strong>Receiving responses:</strong></p>
 <p>I wanted the clients to be able to send requests and receive responses to those. I accidentally asked GPT to tell me how receive responses from the server so it recommended me to use oneshot channels. So I created a ClientRequest to be sent.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>#[derive(Debug)]
+<pre><code class="language-rust">#[derive(Debug)]
 struct ClientRequest {
     message: String,
     tx: oneshot::Sender&lt;String&gt;,
-}
-<span class="boring">}</span></code></pre></pre>
+}</code></pre>
 <p><strong>The server:</strong>
 Ice cream melts. I added this to see how data processing within the server could be a part of the whole message exchanging program. I had seen the <code>interval.tick</code> before, but Copilot completed the piece of code that ticks the timer. I will learn about how that works.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>async fn run_server(mut rx: mpsc::Receiver&lt;ClientRequest&gt;) {
+<pre><code class="language-rust">async fn run_server(mut rx: mpsc::Receiver&lt;ClientRequest&gt;) {
     println!(&quot;SERVER; I will give one person some ice cream!&quot;);
     let mut ice_cream_amount = 50;
     let mut interval = time::interval_at(
@@ -317,13 +312,10 @@ Ice cream melts. I added this to see how data processing within the server could
             }
         }
     }
-}
-<span class="boring">}</span></code></pre></pre>
+}</code></pre>
 <p><strong>Client:</strong></p>
 <p>Every two seconds, the client will ask the server for ice cream, and report how much ice cream is left. It creates a oneshot channel and passes it to the server for an answer. It is blocked until the server responds.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>async fn run_client(tx: mpsc::Sender&lt;ClientRequest&gt;) {
+<pre><code class="language-rust">async fn run_client(tx: mpsc::Sender&lt;ClientRequest&gt;) {
     loop {
         tokio::time::sleep(tokio::time::Duration::from_secs(2)).await;
         if tx.is_closed() {
@@ -342,8 +334,7 @@ Ice cream melts. I added this to see how data processing within the server could
         let answer = response_rx.await.unwrap();
         println!(&quot;CLIENT; I knew you loved me!: {:?}&quot;, answer);
     }
-}
-<span class="boring">}</span></code></pre></pre>
+}</code></pre>
 <p>I might work on a more complicated implementation by adding the following:</p>
 <ul>
 <li>There are more than one clients, and each time the clients ask for ice cream, the amount of ice cream decreases.</li>
