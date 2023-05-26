@@ -4,8 +4,7 @@
 <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
-    <title>thoughtassault-blog</title>
-    <meta name="robots" content="noindex" />
+    <title>Passing messages between threads - thoughtassault-blog</title>
 
 
     <!-- Custom HTML head -->
@@ -14,21 +13,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff" />
 
-    <link rel="icon" href="favicon.svg">
-    <link rel="shortcut icon" href="favicon.png">
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/chrome.css">
-    <link rel="stylesheet" href="css/print.css" media="print">
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="../../css/chrome.css">
+    <link rel="stylesheet" href="../../css/print.css" media="print">
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-    <link rel="stylesheet" href="fonts/fonts.css">
+    <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../fonts/fonts.css">
 
     <!-- Highlight.js Stylesheets -->
-    <link rel="stylesheet" href="highlight.css">
-    <link rel="stylesheet" href="tomorrow-night.css">
-    <link rel="stylesheet" href="ayu-highlight.css">
+    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../ayu-highlight.css">
 
     <!-- Custom theme stylesheets -->
 
@@ -38,7 +37,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "thoughtassault";
         </script>
 
@@ -86,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="posts/hello.html">Hello</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Learning Rust</li><li class="chapter-item expanded "><a href="posts/rust/001_mpbt.html"><strong aria-hidden="true">1.</strong> Passing messages between threads</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Improvement on message passing: Requesting arbitrary data</div></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Developer</li><li class="chapter-item expanded "><a href="posts/developer/001_good_qs/gq.html"><strong aria-hidden="true">3.</strong> Job application questions I liked</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="posts/developer/001_good_qs/bluecode.html"><strong aria-hidden="true">3.1.</strong> Bluecode</a></li><li class="chapter-item expanded "><a href="posts/developer/001_good_qs/wingback.html"><strong aria-hidden="true">3.2.</strong> Wingback</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Upcarta</li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> What is Upcarta (to me)?</div></li><li class="spacer"></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../posts/hello.html">Hello</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Learning Rust</li><li class="chapter-item expanded "><a href="../../posts/rust/001_mpbt.html" class="active"><strong aria-hidden="true">1.</strong> Passing messages between threads</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Improvement on message passing: Requesting arbitrary data</div></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Developer</li><li class="chapter-item expanded "><a href="../../posts/developer/001_good_qs/gq.html"><strong aria-hidden="true">3.</strong> Job application questions I liked</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../posts/developer/001_good_qs/bluecode.html"><strong aria-hidden="true">3.1.</strong> Bluecode</a></li><li class="chapter-item expanded "><a href="../../posts/developer/001_good_qs/wingback.html"><strong aria-hidden="true">3.2.</strong> Wingback</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Upcarta</li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> What is Upcarta (to me)?</div></li><li class="spacer"></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -125,7 +124,7 @@
                     <h1 class="menu-title">thoughtassault-blog</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -155,38 +154,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="hello"><a class="header" href="#hello">Hello</a></h1>
-<p>My name is Dora, and I am a software developer from Turkey. I live in London.</p>
-<p><a href="https://twitter.com/alleinany">twitter</a> - <a href="https://github.com/akbulutdora">github</a> - <a href="https://snort.social/p/npub18gpgwcqdam4nsde4e6gsuclv8cqyxhjwzxfarskfr5e9qyq97aqqtnch39">snort</a></p>
-<hr />
-<h2 id="education"><a class="header" href="#education">Education</a></h2>
-<h3 id="undergrad---sabanci-university"><a class="header" href="#undergrad---sabanci-university">Undergrad - <strong>Sabanci University</strong></a></h3>
-<p><em>(January 2023)</em></p>
-<p>BSc in Computer Science - 4.00 GPA - First ranking student</p>
-<p>Minor in Philosophy</p>
-<hr />
-<h2 id="work-experience"><a class="header" href="#work-experience">Work Experience</a></h2>
-<h3 id="nlp-intern--yazi-ai"><a class="header" href="#nlp-intern--yazi-ai"><strong>NLP Intern</strong> @ <strong>YAZI AI</strong></a></h3>
-<p><em>(Summer 2021)</em></p>
-<p>This project aimed to be a pioneer in Turkish NLP, as it was one of the first works on Turkish Financial Sentiment Analysis. I built scrapers for financial news websites and stock market movements. Then I tried to apply NER to the data I collected. The internship ended due to time constraints before I could complete the project.
-I worked with Python.</p>
-<p>I was completely inexperienced and mostly confused. I was very dependent on my supervisor and she was quite busy, so things did not really go as I wanted them to go.</p>
-<h3 id="visiting-researcher-intern--university-of-kent"><a class="header" href="#visiting-researcher-intern--university-of-kent"><strong>Visiting Researcher Intern</strong> @ <strong>University of Kent</strong></a></h3>
-<p><em>(Summer 2022)</em></p>
-<p>At Kent, I was responsible with implementing a tool to collect data about DDoS protection adoption across the internet. I used Go, MongoDB and GCC. 
-Since the tool was meant to scan the a huge number of domains weekly, it had to be performant. I benchmarked several approaches and libraries.</p>
-<p>During the internship, I discovered my interest in programming languages and explored the academic life. I love learning new programming syntax, semantics and paradigms.</p>
-<h3 id="mobile-developer--upcarta"><a class="header" href="#mobile-developer--upcarta"><strong>Mobile developer</strong> @ <strong>Upcarta</strong></a></h3>
-<p><em>(March 2022 - Present)</em></p>
-<p><a href="https://www.upcarta.com/">Upcarta</a> is a platform for discovering, organizing and sharing content. Its killer feature is gathering scattered content recommendations, curations and collections from all around the web, streamlining the process of discovering content. I have a strong belief that what matters to humans will be humans they care about.</p>
-<p>For the past year, I have been developing the mobile app of Upcarta. We use Flutter.</p>
-<p>I learned Flutter all by myself and taught the rest of the team on the go. I had to make the architectural and stylistic decisions because flutter didn't/doesn't really have the idiomatic ways to guide us. It was quite a challenge.</p>
-<p>Upcarta will be on the app stores soon. I can share a test link if you want to try Upcarta. Or you can just sign in from the web and use it.</p>
-<hr />
-<h2 id="today"><a class="header" href="#today">Today</a></h2>
-<p>Working on Upcarta, learning Rust. I am open to Rust developer positions.</p>
-<p>This will also be a blog for me to organize and share my learning process/progress, food for thought and thought for food.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="1-passing-messages-between-threads"><a class="header" href="#1-passing-messages-between-threads">1. Passing messages between threads</a></h1>
+                        <h1 id="1-passing-messages-between-threads"><a class="header" href="#1-passing-messages-between-threads">1. Passing messages between threads</a></h1>
 <p>I am trying to implement simple message-passing channels in Rust. I want to share/log my learning progress. I think it will be fun to return to it in some months/years.</p>
 <p><strong>Note:</strong> I am a complete beginner to Rust and haven't dealt with this sort of concurrency before.</p>
 <p>The task is simple: I will have two channels running on different threads or running as concurrent processes. 
@@ -392,58 +360,20 @@ Ice cream melts. I added this to see how data processing within the server could
 <li>The client's are not blocked when they are waiting for a response from the server.</li>
 </ul>
 <p>Another insight I gained due to the help of a Rust developer was that the Go idiom I mentioned was more than a best practice in Rust. The compiler has strict constraints on how data can be modified by different threads.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="job-application-questions-i-liked"><a class="header" href="#job-application-questions-i-liked">Job application questions I liked</a></h1>
-<p>Here, I will compile application questions I liked answering.</p>
-<p>I will write my answers in quote blocks, followed by my comments on the questions.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="bluecode"><a class="header" href="#bluecode">Bluecode</a></h1>
-<h2 id="favorite-languages-and-tools"><a class="header" href="#favorite-languages-and-tools">Favorite Languages And Tools</a></h2>
-<p>Which are your favorite languages and tools for building things? Please explain your experience and why you like them.</p>
-<blockquote>
-<p>The most important thing is that I should enjoy using a language or tool. Spending time with code all day, what I am doing should be a pleasure (at least most of the time). Simplicity is a big plus for this. Also, I shouldn't feel like I am hitting a wall with what I want to do (at least not very often). And my favorites so far would be Go, Flutter and Flair.</p>
-<p>I learned Go for my internship at the University of Kent. The purpose of that project was to collect DDoS related-data about the most popular domains on the web on a daily or weekly basis. I was responsible for developing a tool that collects DNS and status data a given list of domains. Performance-wise, Rust or Elixir could make more sense, but Go made the development much quicker for a student. I got a lot of work done and had a good time. It's one of those languages with a big agenda, and I love that the agenda is simplicity. I really like the error handling and concurrency mechanisms of Go.</p>
-<p>Most of my programming experience has been with Flutter and Dart to develop the mobile app of Upcarta. Even though I won't follow a career in mobile development (I want to do a little bit more exciting things), I enjoy coding with Flutter. Dart and Flutter's design is very good. I find it much easier to read compared to HTML, and the UI code rarely requires comments. Flutter is still young and there are gaps in the development ecosystem which make things frustrating for no obvious reason. But still it is a pleasure to code, and there are many useful packages built by the community that ease my pain.</p>
-<p>Flair (https://github.com/flairNLP/flair) is an open-source NLP framework. I worked with NLP for my graduation project, and at first wanted to use huggingface and TensorFlow, its API and models. There was lots of boilerplate code and frustration about things not working. The NLP-guy at Upcarta recommended flair, which made things much faster. You can just use and fine tune state-of-the-art models with it. It is built on PyTorch, therefore is integrated well and can handle many different types of tasks such as sentiment detection, NER, etc. I recommend it to any friend who has an NLP project.</p>
-</blockquote>
-<h2 id="code-quality"><a class="header" href="#code-quality">Code Quality</a></h2>
-<p>What for you is the most important for writing quality code?</p>
-<blockquote>
-<p>Coding is a very communicative process. You rarely code alone, and even if you code alone, a couple of months is enough for a piece of code to be mistaken for a stranger's. So quality code for me would be understandable and (obviously) performative code. </p>
-<p>In order to make code understandable, it is important to determine the simplest blocks and combine them in a clear and intuitive way. The code should make sense and come as natural to the reader. There are many practices available for that such as variable naming, DRY and KISS. But in the end, I think it just comes down to understanding this approach. I have written and read a lot of low quality code in the past year, and I have rewritten a lot of it. Sometimes after writing some code, I just need to take my time and come back to it the next day.</p>
-</blockquote>
-<h2 id="favorite-code"><a class="header" href="#favorite-code">Favorite Code</a></h2>
-<p>Which are your favorite open-source projects and packages?</p>
-<blockquote>
-<p>Bloc library and Nostr. </p>
-<p>Bloc is a state management library built by the Flutter community. For a beginner, it was quite difficult to learn and use. But  once you learn, it is very easy to see why and how are the state changes are happening. It gives you clear, extensive control over the state.</p>
-<p>Nostr is a protocol for anti-censorship, software-independent, decentralized social network. Basically it is just posting notes over relays, with cryptographic verification. I like it because it is very straightforward and opinionated about censorship. It also allows you to use whichever client you want, giving you the option to not use clients that will show you ads or features you don't like. Also, it is well integrated with the bitcoin environment (most of its users are bitcoin people-though I am not) so offers a unique way of monetization for the platforms and users with the feature of zapping posts and profiles. There is an active community that is building all sorts of things on top of Nostr. I hope the future of the social internet will not be at the hands of a couple of companies, and I believe Nostr could be the way. 
-Note: Technically, its uses are not limited to social media, but what I have seen the most is social media apps being built on top of it. I use Damus, a mobile social media app built on top of Nostr.</p>
-</blockquote>
-<h2 id="role-models"><a class="header" href="#role-models">Role-Models</a></h2>
-<p>Do you have any programming role-models? Do you have any favorite book(s) on software? Who, which ones, and why?</p>
-<blockquote>
-<p>Jonathan Blow has been a role-model since I played the Witness and Braid at the age of 16. I also try to watch his talks on our need on a modern programming language to replace C and C++, and how some attempts got some things right and some things wrong. Currently he is building a new language called Jai. I admire his approach to programming concepts. Even though he has some sort of a bad reputation with the way he disagrees with people, I think he is a brilliant mind worth following.</p>
-<p>So far no book on software has intrigued me that much.</p>
-</blockquote>
-<p>After this question, I picked up <a href="https://www.upcarta.com/resources/1006-the-mythical-man-month-essays-on-software-engineering">The Mythical Man-Month</a>, and it's delightful. Clear pieces on software development. I recommend the first parts where Brooks talk about the joys and woes of software.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="wingback"><a class="header" href="#wingback">Wingback</a></h1>
-<h2 id="can-you-name-three-software-companies-you-admire-and-why-you-admire-them--or--which-technological-feats-of-the-past-inspire-you"><a class="header" href="#can-you-name-three-software-companies-you-admire-and-why-you-admire-them--or--which-technological-feats-of-the-past-inspire-you">Can you name three software companies you admire and why you admire them? -or- Which technological feats of the past inspire you?</a></h2>
-<blockquote>
-<p>Thekla Inc, Notion, Discord</p>
-<p>Thekla is the video game company that made The Witness and Braid, which had profound impact on me. They are driven by the unique vision of Jonathan Blow, game developer and the inventor of the programming language Jai. Also, I like a lot that their current projects are secret. I'm waiting to be surprised.</p>
-<p>Notion's product driven ambition deserves respect. At Upcarta, we try to be inspired by that. I also love how Notion can be useful from individuals keeping simple notes to companies organizing their workflows. We use Notion at Upcarta.</p>
-<p>I love how organic Discord came to be, or at least how organic it seemed. It's &quot;just what we needed&quot;. It was needed for gamers. I remember using skype to play games with my friends, and how painful that was. Switching to discord was fast and refreshing. But now it is great for working remotely, hanging out with your friends who live far away.</p>
-</blockquote>
-<h2 id="why-did-you-get-into-programming"><a class="header" href="#why-did-you-get-into-programming">Why did you get into programming?</a></h2>
-<blockquote>
-<p>I was studying computer science because I was academically successful and wasn't interested in anything else. I knew a bit of C++ from my curiosity, but I had no special interest for programming until the third year of university. The first year courses (Intro to Programming, Advanced programming, etc) were just a part of school, the homeworks felt like puzzles.</p>
-<p>What I would consider got me into programming was two things: the Programming Languages course I took and the following internship at Kent. There, I learnt Go and I discovered how excited I got to discover new ways of programming. Since then I did a little bit of Elixir and Go, and now I am learning Rust. The joy of programming only increases day by day.</p>
-</blockquote>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                        <a rel="prev" href="../../posts/hello.html" class="mobile-nav-chapters previous"
+                            title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
 
+                        <a rel="next" href="../../posts/developer/001_good_qs/gq.html" class="mobile-nav-chapters next"
+                            title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -451,7 +381,15 @@ Note: Technically, its uses are not limited to social media, but what I have see
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                <a rel="prev" href="../../posts/hello.html" class="nav-chapters previous" title="Previous chapter"
+                    aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <i class="fa fa-angle-left"></i>
+                </a>
 
+                <a rel="next" href="../../posts/developer/001_good_qs/gq.html" class="nav-chapters next" title="Next chapter"
+                    aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <i class="fa fa-angle-right"></i>
+                </a>
             </nav>
 
         </div>
@@ -464,21 +402,16 @@ Note: Technically, its uses are not limited to social media, but what I have see
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
 
         <!-- Custom JS scripts -->
 
-        <script>
-            window.addEventListener('load', function () {
-                window.setTimeout(window.print, 100);
-            });
-        </script>
 
     </div>
 </body>
