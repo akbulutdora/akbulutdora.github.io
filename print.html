@@ -86,7 +86,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="posts/hello.html">Hello</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Learning Rust</li><li class="chapter-item expanded "><a href="posts/rust/001_mpbt.html"><strong aria-hidden="true">1.</strong> Passing messages between threads</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Improvement on message passing: Requesting arbitrary data</div></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Developer</li><li class="chapter-item expanded "><a href="posts/developer/001_good_qs/gq.html"><strong aria-hidden="true">3.</strong> Job application questions I liked</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="posts/developer/001_good_qs/bluecode.html"><strong aria-hidden="true">3.1.</strong> Bluecode</a></li><li class="chapter-item expanded "><a href="posts/developer/001_good_qs/wingback.html"><strong aria-hidden="true">3.2.</strong> Wingback</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Upcarta</li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> What is Upcarta (to me)?</div></li><li class="spacer"></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="posts/hello.html">Hello</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Learning Rust</li><li class="chapter-item expanded "><a href="posts/rust/001_mpbt.html"><strong aria-hidden="true">1.</strong> Passing messages between threads</a></li><li class="chapter-item expanded "><a href="posts/rust/002_requesting_arbitrary_data.html"><strong aria-hidden="true">2.</strong> Improvement on message passing: Requesting arbitrary data</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Developer</li><li class="chapter-item expanded "><a href="posts/developer/001_good_qs/gq.html"><strong aria-hidden="true">3.</strong> Job application questions I liked</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="posts/developer/001_good_qs/bluecode.html"><strong aria-hidden="true">3.1.</strong> Bluecode</a></li><li class="chapter-item expanded "><a href="posts/developer/001_good_qs/wingback.html"><strong aria-hidden="true">3.2.</strong> Wingback</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Upcarta</li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> What is Upcarta (to me)?</div></li><li class="spacer"></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -392,6 +392,48 @@ Ice cream melts. I added this to see how data processing within the server could
 <li>The client's are not blocked when they are waiting for a response from the server.</li>
 </ul>
 <p>Another insight I gained due to the help of a Rust developer was that the Go idiom I mentioned was more than a best practice in Rust. The compiler has strict constraints on how data can be modified by different threads.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="2-improvement-on-message-passing-requesting-arbitrary-data"><a class="header" href="#2-improvement-on-message-passing-requesting-arbitrary-data">2. Improvement on message passing: Requesting arbitrary data</a></h1>
+<p>In the previous exercise, I implemented a simple program where a client and server ran asynchronously and communicated by passing messages. This time, the client will send arbitrary queries to the server to execute.</p>
+<hr />
+<h2 id="design"><a class="header" href="#design">Design</a></h2>
+<h3 id="server"><a class="header" href="#server">Server</a></h3>
+<ul>
+<li>The server holds a mutable database. To keep things simple, this is a simple data structure. There is information about the ice-cream the server has such as the existing flavors, their recipes, existing orders and which flavors they are in, etc. The database fields are as follows:
+<ul>
+<li><code>flavors_stock: Vec&lt;String&gt;</code> -&gt; represents the flavors in stock. </li>
+<li><code>flavor_recipes: HashMap&lt;String, Vec&lt;String&gt;&gt;</code> -&gt; represents the recipes of each flavor (it is guaranteed  that the existing flavors can only be flavors from this list).</li>
+<li>I can add more later if I like.</li>
+</ul>
+</li>
+<li>The database is initialized upon <code>run_server()</code>. When it receives a request, it calls the closure sent with the request on the database.</li>
+<li>The server doesn't deal with error handling. It returns a <code>Result</code> to the client. The content of the result will be be of the generic type passed from the client.</li>
+</ul>
+<h3 id="client"><a class="header" href="#client">Client</a></h3>
+<ul>
+<li>The client sends queries to the server. The <code>ClientRequest</code> consists of a one-shot channel and query. The query is a <code>FnOnce</code> function that takes the server's data as a reference (<code>&amp;Database</code>), and the return type is arbitrary. I think I can achieve this using a generic type and trait bounds (Even though I understand generics, trait objects and traits, I still need to figure this out).</li>
+<li>For example, the client can query the database for how many different flavors it has (integer), which flavors do not have dairy in their recipes (list of strings), and more.</li>
+</ul>
+<p>A simple diagram of the communication process I made GPT draw for me:</p>
+<pre><code>+---------+                           +--------+
+|         | --(1) Prepare Query-----&gt; |        |
+|  Client |                           | Server |
+|         |                           |        |
++---------+                           +--------+
+                                       |
+                                       V
+                             (2) Execute Query on Database
+                                       |
+                                       V
++---------+                           +--------+
+|         | &lt;---(3) Send Result ----- |        |
+|  Client |                           | Server |
+|         |                           |        |
++---------+                           +--------+
+
+</code></pre>
+<hr />
+<h2 id="implementation"><a class="header" href="#implementation">Implementation</a></h2>
+<p>// todo</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="job-application-questions-i-liked"><a class="header" href="#job-application-questions-i-liked">Job application questions I liked</a></h1>
 <p>Here, I will compile application questions I liked answering.</p>
 <p>I will write my answers in quote blocks, followed by my comments on the questions.</p>
