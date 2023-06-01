@@ -20,4 +20,8 @@
 # Upcarta
 - [What is Upcarta (to me)?]()
 
+
+# Philosophy
+- [Open Source Software and the Triple Helix Model of Science](./posts/philosophy/001_foss_thm.md)
+
 ----
