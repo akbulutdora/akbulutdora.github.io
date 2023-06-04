@@ -1,0 +1,9 @@
+{
+    "grammarly.selectors": [
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "blog/src/posts/rust/002_requesting_arbitrary_data.md"
+        }
+    ]
+}
