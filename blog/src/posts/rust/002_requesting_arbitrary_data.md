@@ -185,4 +185,4 @@ Some(query) = rx.recv() => query.execute(&mut database),
 //...
 ```
 
-I think this is a very elegant solution. I don't find it very intuitive yet, it feels like bending my head and looking at the world upside down, but I find the challenge of digesting this exciting.
+I think this is a very elegant solution. I don't find it very intuitive yet: It feels like bending my head and looking at the world upside down, but I find the challenge of digesting this exciting.
