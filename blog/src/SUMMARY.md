@@ -6,6 +6,7 @@
 # Learning Rust
 - [Passing messages between threads](./posts/rust/001_mpbt.md)
 - [Improvement on message passing: Requesting arbitrary data](./posts/rust/002_requesting_arbitrary_data.md)
+- [Designing and Implementing a Generic Actor Model for Concurrency](./posts/rust/003_generic_actor_model.md)
 
 ----
 
