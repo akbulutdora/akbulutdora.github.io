@@ -92,7 +92,7 @@ where
             (self.action)(&mut self.state, message);
         }
     }
-
+}
 ```
 
 message:
