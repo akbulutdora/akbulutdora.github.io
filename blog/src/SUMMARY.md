@@ -24,5 +24,6 @@
 
 # Philosophy
 - [Open Source Software and the Triple Helix Model of Science](./posts/philosophy/001_foss_thm.md)
+- [Does the Shift from Behavioral AI to Deep Learning Constitute a Kuhnian Paradigm Shift?](./posts/philosophy/002_ai_kuhn.md)
 
 ----
