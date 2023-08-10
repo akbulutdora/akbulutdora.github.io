@@ -155,6 +155,68 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="implementing-an-input-toolbar-in-flutter"><a class="header" href="#implementing-an-input-toolbar-in-flutter">Implementing an Input Toolbar in Flutter</a></h1>
+<p>This post is about implementing an input toolbar to add images to a post, just like how it works in Twitter, Whatsapp, or other apps. I'm writing this quick post for one of my teammates at Upcarta. I will be brief and won't go into many details.</p>
+<p>Here is our view. We wrap the view itself and the input toolbar with a <code>Column</code>.</p>
+<pre><code class="language-dart">return Scaffold(
+      appBar: AppBar(
+        title: Text('Ticket #${ticket.ticketId}'),
+        actions: [
+          _CloseTicketButton(ticket),
+        ],
+      ),
+      body: Column(
+        children: &lt;Widget&gt;[
+          _View(ticket: ticket).expand(),
+          // The input toolbar and button
+          _TextingKeyboard(ticket: ticket),
+        ],
+      ),
+    );
+</code></pre>
+<p>Here is what the input toolbar looks like. I've omitted a lot of it for the sake of simplicity. You should adjust the paddings, etc. for yourself. One difficulty I had was adjusting the paddings and the sizes of the input toolbar widgets. One good option could be turning this whole view into a reusable compontent.</p>
+<p>Note that I use my own widget extensions instead of <code>Padding</code>, <code>Flexible</code> and <code>Expanded</code> widgets. I think they keep the widget tree cleaner. But they are nothing special.</p>
+<pre><code class="language-dart">  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      minimum: const EdgeInsets.only(
+        bottom: kVerticalPaddingSmall,
+        left: kHorizontalPaddingSmall,
+        right: kHorizontalPaddingSmall,
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: &lt;Widget&gt;[
+          ConstrainedBox(
+            constraints: const BoxConstraints(
+              minHeight: 36,
+            ),
+            child: TextField(...),
+          ).flex(),
+          const SizedBox(width: 4),
+          // Button
+          SizedBox.square(
+            dimension: 36,
+            child: IconButton.filled(
+              padding: const EdgeInsets.all(kVerticalPaddingSmall),
+              onPressed: () {...},
+              icon: const Icon(
+                Icons.send,
+                size: 20,
+                color: AppColors.white,
+              ),
+            ),
+          ),
+        ],
+      ).padding(top: kVerticalPaddingSmall),
+    ).backgroundColor(AppColors.red[3]!);
+  }
+</code></pre>
+<p>We are not done yet. The <code>_View</code>, which is the widget that actually shows the view itself should be wrapped into a <code>SingleChildScrollView</code> or some other scrollable. This is necessary because we want to have the keyboard take up space in the screen, limiting the size of the view, and turning it into a scrollable widget where it sits. Here is what I went with:</p>
+<pre><code class="language-dart">return SingleChildScrollView(
+      padding: const EdgeInsets.only(bottom: 56),
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+      child: Column(
+</code></pre>
 
                     </main>
 
