@@ -10,6 +10,10 @@
 
 ----
 
+# Flutter
+- [Implementing an Input Toolbar in Flutter](./posts/flutter/001_input_toolbar.md)
+----
+
 # Developer
 - [Job application questions I liked](./posts/developer/001_good_qs/gq.md)
   - [Bluecode](./posts/developer/001_good_qs/bluecode.md)
