@@ -22,6 +22,9 @@
 <!-- - [Dev surveys](./posts/developer/002_dev_surveys/dev_surveys.md) -->
 ----
 
+# Tricks
+- [POSTing files using CURL](./posts/tricks/001_post_files_through_curl.md)
+ 
 # Upcarta
 - [What is Upcarta (to me)?]()
 
