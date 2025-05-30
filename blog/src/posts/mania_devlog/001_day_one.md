@@ -1,3 +1,5 @@
+# day one
+
 **Date**: 30.05.2025
 
 **Session Duration**: 10:00 - 14:00
@@ -23,8 +25,8 @@
 
 ## Notes
 - Later on, I will need to fit the whole level to the window no matter what size. Is this called pixel perfection? Idk yet.
-- Right now, I don't have any system for collision detection, entities [Handles are the better pointers
-](https://floooh.github.io/2018/06/17/handles-vs-pointers.html), loading resources, 
+- Right now, I don't have any system for collision detection, entities ([Handles are the better pointers
+](https://floooh.github.io/2018/06/17/handles-vs-pointers.html)), loading resources, 
 
 ## Next
 - Player state machine transition: `Grounded → Breaking` on "E" key press
