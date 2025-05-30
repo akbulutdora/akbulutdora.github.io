@@ -8,7 +8,7 @@
 
 
     <!-- Custom HTML head -->
-    
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff" />
@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../posts/hello.html">Hello</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Learning Rust</li><li class="chapter-item expanded "><a href="../../posts/rust/001_mpbt.html"><strong aria-hidden="true">1.</strong> Passing messages between threads</a></li><li class="chapter-item expanded "><a href="../../posts/rust/002_requesting_arbitrary_data.html"><strong aria-hidden="true">2.</strong> Improvement on message passing: Requesting arbitrary data</a></li><li class="chapter-item expanded "><a href="../../posts/rust/003_generic_actor_model.html" class="active"><strong aria-hidden="true">3.</strong> Designing and Implementing a Generic Actor Model for Concurrency</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Flutter</li><li class="chapter-item expanded "><a href="../../posts/flutter/001_input_toolbar.html"><strong aria-hidden="true">4.</strong> Implementing an Input Toolbar in Flutter</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Developer</li><li class="chapter-item expanded "><a href="../../posts/developer/001_good_qs/gq.html"><strong aria-hidden="true">5.</strong> Job application questions I liked</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../posts/developer/001_good_qs/bluecode.html"><strong aria-hidden="true">5.1.</strong> Bluecode</a></li><li class="chapter-item expanded "><a href="../../posts/developer/001_good_qs/wingback.html"><strong aria-hidden="true">5.2.</strong> Wingback</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Tricks</li><li class="chapter-item expanded "><a href="../../posts/tricks/001_post_files_through_curl.html"><strong aria-hidden="true">6.</strong> POSTing files using CURL</a></li><li class="chapter-item expanded affix "><li class="part-title">Upcarta</li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> What is Upcarta (to me)?</div></li><li class="chapter-item expanded affix "><li class="part-title">Philosophy</li><li class="chapter-item expanded "><a href="../../posts/philosophy/001_foss_thm.html"><strong aria-hidden="true">8.</strong> Open Source Software and the Triple Helix Model of Science</a></li><li class="chapter-item expanded "><a href="../../posts/philosophy/002_ai_kuhn.html"><strong aria-hidden="true">9.</strong> Does the Shift from Behavioral AI to Deep Learning Constitute a Kuhnian Paradigm Shift?</a></li><li class="spacer"></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="posts/hello.html">Hello</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Learning Rust</li><li class="chapter-item expanded "><a href="posts/rust/001_mpbt.html"><strong aria-hidden="true">1.</strong> Passing messages between threads</a></li><li class="chapter-item expanded "><a href="posts/rust/002_requesting_arbitrary_data.html"><strong aria-hidden="true">2.</strong> Improvement on message passing: Requesting arbitrary data</a></li><li class="chapter-item expanded "><a href="posts/rust/003_generic_actor_model.html"><strong aria-hidden="true">3.</strong> Designing and Implementing a Generic Actor Model for Concurrency</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Flutter</li><li class="chapter-item expanded "><a href="posts/flutter/001_input_toolbar.html"><strong aria-hidden="true">4.</strong> Implementing an Input Toolbar in Flutter</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Developer</li><li class="chapter-item expanded "><a href="posts/developer/001_good_qs/gq.html"><strong aria-hidden="true">5.</strong> Job application questions I liked</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="posts/developer/001_good_qs/bluecode.html"><strong aria-hidden="true">5.1.</strong> Bluecode</a></li><li class="chapter-item expanded "><a href="posts/developer/001_good_qs/wingback.html"><strong aria-hidden="true">5.2.</strong> Wingback</a></li></ol></li><li class="chapter-item expanded "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Tricks</li><li class="chapter-item expanded "><a href="posts/tricks/001_post_files_through_curl.html"><strong aria-hidden="true">6.</strong> POSTing files using CURL</a></li><li class="chapter-item expanded affix "><li class="part-title">Upcarta</li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> What is Upcarta (to me)?</div></li><li class="chapter-item expanded affix "><li class="part-title">Philosophy</li><li class="chapter-item expanded "><a href="posts/philosophy/001_foss_thm.html"><strong aria-hidden="true">8.</strong> Open Source Software and the Triple Helix Model of Science</a></li><li class="chapter-item expanded "><a href="posts/philosophy/002_ai_kuhn.html"><strong aria-hidden="true">9.</strong> Does the Shift from Behavioral AI to Deep Learning Constitute a Kuhnian Paradigm Shift?</a></li><li class="chapter-item expanded affix "><li class="part-title">Mania Devlog</li><li class="chapter-item expanded "><a href="posts/mania_devlog/001_day_one.html"><strong aria-hidden="true">10.</strong> day one</a></li><li class="chapter-item expanded affix "><li class="spacer"></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -93,7 +93,7 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
@@ -174,8 +174,8 @@ async fn main() {
 
     let result = tracker.await;
     match result {
-        Ok(val) =&gt; println!(&quot;tracker: {val}&quot;),
-        Err(err) =&gt; println!(&quot;tracker: err: {}&quot;, err),
+        Ok(val) =&gt; println!("tracker: {val}"),
+        Err(err) =&gt; println!("tracker: err: {}", err),
     }
 }</code></pre>
 <ol>
