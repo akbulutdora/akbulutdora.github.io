@@ -26,9 +26,9 @@
 ## Notes
 - Later on, I will need to fit the whole level to the window no matter what size. Is this called pixel perfection? Idk yet.
 - Right now, I don't have any system for collision detection, entities ([Handles are the better pointers
-](https://floooh.github.io/2018/06/17/handles-vs-pointers.html)), loading resources, 
+](https://floooh.github.io/2018/06/17/handles-vs-pointers.html)), loading resources,
 
-## Next
+## Next Steps
 - Player state machine transition: `Grounded → Breaking` on "E" key press
 - Tile removal when broken
 - Breaking jump trajectory math
