@@ -33,6 +33,7 @@
 - [Does the Shift from Behavioral AI to Deep Learning Constitute a Kuhnian Paradigm Shift?](./posts/philosophy/002_ai_kuhn.md)
 
 # Mania Devlog
-- [day one](./posts/mania_devlog/001_day_one.md)
-
+- [day one: dev env, camera, frame-rate independence, moods](./posts/mania_devlog/001_day_one.md)
+- [day two: automatic hot reload, smashing jump, player states](./posts/mania_devlog/002_day_two.md)
+- [day three: handle-based entity system, reading game data from json](./posts/mania_devlog/003_day_three.md)
 ----

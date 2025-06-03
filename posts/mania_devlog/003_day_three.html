@@ -4,7 +4,7 @@
 <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
-    <title>Hello - thoughtassault-blog</title>
+    <title>day three: handle-based entity system, reading game data from json - thoughtassault-blog</title>
 
 
     <!-- Custom HTML head -->
@@ -13,21 +13,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff" />
 
-    <link rel="icon" href="favicon.svg">
-    <link rel="shortcut icon" href="favicon.png">
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/chrome.css">
-    <link rel="stylesheet" href="css/print.css" media="print">
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="../../css/chrome.css">
+    <link rel="stylesheet" href="../../css/print.css" media="print">
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-    <link rel="stylesheet" href="fonts/fonts.css">
+    <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../fonts/fonts.css">
 
     <!-- Highlight.js Stylesheets -->
-    <link rel="stylesheet" href="highlight.css">
-    <link rel="stylesheet" href="tomorrow-night.css">
-    <link rel="stylesheet" href="ayu-highlight.css">
+    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../ayu-highlight.css">
 
     <!-- Custom theme stylesheets -->
 
@@ -37,7 +37,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "thoughtassault";
         </script>
 
@@ -124,7 +124,7 @@
                     <h1 class="menu-title">thoughtassault-blog</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -154,47 +154,158 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="hello"><a class="header" href="#hello">Hello</a></h1>
-<p>My name is Dora, and I am a software developer from Turkey. I live in London.</p>
-<p><a href="https://twitter.com/alleinany">twitter</a> - <a href="https://github.com/akbulutdora">github</a> - <a href="https://snort.social/p/npub18gpgwcqdam4nsde4e6gsuclv8cqyxhjwzxfarskfr5e9qyq97aqqtnch39">snort</a></p>
-<hr />
-<h2 id="education"><a class="header" href="#education">Education</a></h2>
-<h3 id="undergrad---sabanci-university"><a class="header" href="#undergrad---sabanci-university">Undergrad - <strong>Sabanci University</strong></a></h3>
-<p><em>(January 2023)</em></p>
-<p>BSc in Computer Science - 4.00 GPA - First ranking student</p>
-<p>Minor in Philosophy</p>
-<hr />
-<h2 id="work-experience"><a class="header" href="#work-experience">Work Experience</a></h2>
-<h3 id="nlp-intern--yazi-ai"><a class="header" href="#nlp-intern--yazi-ai"><strong>NLP Intern</strong> @ <strong>YAZI AI</strong></a></h3>
-<p><em>(Summer 2021)</em></p>
-<p>This project aimed to be a pioneer in Turkish NLP, as it was one of the first works on Turkish Financial Sentiment Analysis. I built scrapers for financial news websites and stock market movements. Then I tried to apply NER to the data I collected. The internship ended due to time constraints before I could complete the project.
-I worked with Python.</p>
-<p>I was completely inexperienced and mostly confused. I was very dependent on my supervisor and she was quite busy, so things did not really go as I wanted them to go.</p>
-<h3 id="visiting-researcher-intern--university-of-kent"><a class="header" href="#visiting-researcher-intern--university-of-kent"><strong>Visiting Researcher Intern</strong> @ <strong>University of Kent</strong></a></h3>
-<p><em>(Summer 2022)</em></p>
-<p>At Kent, I was responsible with implementing a tool to collect data about DDoS protection adoption across the internet. I used Go, MongoDB and GCC.
-Since the tool was meant to scan the a huge number of domains weekly, it had to be performant. I benchmarked several approaches and libraries.</p>
-<p>During the internship, I discovered my interest in programming languages and explored the academic life. I love learning new programming syntax, semantics and paradigms.</p>
-<h3 id="mobile-developer--upcarta"><a class="header" href="#mobile-developer--upcarta"><strong>Mobile developer</strong> @ <strong>Upcarta</strong></a></h3>
-<p><em>(March 2022 - Present)</em></p>
-<p><a href="https://www.upcarta.com/">Upcarta</a> is a platform for discovering, organizing and sharing content. Its killer feature is gathering scattered content recommendations, curations and collections from all around the web, streamlining the process of discovering content. I have a strong belief that what matters to humans will be humans they care about.</p>
-<p>For the past year, I have been developing the mobile app of Upcarta. We use Flutter.</p>
-<p>I learned Flutter all by myself and taught the rest of the team on the go. I had to make the architectural and stylistic decisions because flutter didn't/doesn't really have the idiomatic ways to guide us. It was quite a challenge.</p>
-<p>Upcarta will be on the app stores soon. I can share a test link if you want to try Upcarta. Or you can just sign in from the web and use it.</p>
-<hr />
-<h2 id="today"><a class="header" href="#today">Today</a></h2>
-<p>Working on Upcarta, learning Rust. I am open to Rust developer positions.</p>
-<p>This will also be a blog for me to organize and share my learning process/progress, food for thought and thought for food.</p>
+                        <h1 id="day-three-handle-based-entity-system-reading-game-data-from-json"><a class="header" href="#day-three-handle-based-entity-system-reading-game-data-from-json">day three: handle-based entity system, reading game data from json</a></h1>
+<p><strong>Date</strong>: 03.06.2025</p>
+<p><strong>Session Duration</strong>: 11:00 - 17:00</p>
+<h2 id="progress"><a class="header" href="#progress">Progress</a></h2>
+<ol>
+<li><strong>Handle-Based Entity System</strong>
+I implemented Karl Zylinski's <a href="https://www.youtube.com/watch?v=MzR1us2nZPY">Static Handle Maps</a> for my entity system. I migrated my Player to be an Entity. The implementation isn't complete. I still need to migrate the animation, but that's another day's work.</li>
+</ol>
+<pre><code class="language-odin">Entity_Type :: enum {
+	None,
+	Player,
+	Letter,
+}
+
+Entity_Type_Data :: union {
+	Player_Data,
+	Letter_Data,
+}
+
+Letter_Data :: struct {
+	id:       string,
+	response: string,
+	content:  string,
+	mood:     PlayerMood,
+}
+
+TextureName :: enum {
+	Player,
+	Letter,
+}
+
+Player_Data :: struct {
+	state:         PlayerState,
+	grounded:      bool,
+	flipped:       bool,
+	is_running:    bool,
+	mood:          PlayerMood,
+	idle_anim:     AnimatedSprite,
+	run_anim:      AnimatedSprite,
+	jump_anim:     AnimatedSprite,
+	anim_instance: AnimationInstance,
+}
+
+Entity :: struct {
+	handle:   Entity_Handle,
+	type:     Entity_Type,
+	pos:      Vec2,
+	vel:      Vec2,
+	size:     Vec2,
+	color:    rl.Color,
+	tex:      TextureName,
+	// anim: Animation,
+	collider: Rect,
+	disabled: bool,
+	data:     Entity_Type_Data,
+}
+</code></pre>
+<ol start="2">
+<li><strong>Reading Game Data From Json</strong>
+I needed the letters to contain data, and my current ASCII-based level data can't support this. Therefore I decided to store these as JSON.</li>
+</ol>
+<p>Here is how I store the data for now:</p>
+<pre><code class="language-json">{
+  "data": [
+    {
+      "level_id": 1,
+      "letters": [
+        {
+          "id": "1_1",
+          "pos": [4, 10],
+          "content": "A",
+          "mood": "angry",
+          "response": "I am angry!"
+        },
+        {
+          "id": "1_2",
+          "pos": [5, 13],
+          "content": "B",
+          "mood": "inspired",
+          "response": "I am happy!"
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p>And here is how I load it.</p>
+<pre><code class="language-odin">LEVEL_COUNT :: 32
+LETTER_COUNT :: 8
+
+@(private = "file")
+Letter_Data :: struct {
+	id:       string,
+	pos:      Vec2,
+	content:  string,
+	mood:     string,
+	response: string,
+}
+
+@(private = "file")
+Level_Data :: struct {
+	level_id: int,
+	letters:  [LETTER_COUNT]Letter_Data,
+}
+
+@(private = "file")
+Level_Letter_Data :: struct {
+	data: [LEVEL_COUNT]Level_Data,
+}
+
+parse_letter_data_json :: proc() -&gt; Level_Letter_Data {
+	abs_path, _ := path.abs("./", context.temp_allocator)
+	file_name := fmt.tprintf("%v/assets/levels/letter_data.json", abs_path)
+
+	data, ok := os.read_entire_file_from_filename(file_name)
+	if !ok {
+		panic("Failed to load the letter data file!")
+	}
+	defer delete(data)
+
+	level_letter_data: Level_Letter_Data
+	unmarshal_err := json.unmarshal(data, &amp;level_letter_data, allocator = context.temp_allocator)
+	if unmarshal_err != nil {
+		panic("Failed to unmarshal letter json file!")
+	}
+
+	return level_letter_data
+}
+</code></pre>
+<h2 id="notes"><a class="header" href="#notes">Notes</a></h2>
+<ul>
+<li>The structure of all this could change. I am still learning and figuring out how to do things.</li>
+<li>I am slightly aware that I could optimize game data loading by storing them as binary, since parsing JSON is slow. Maybe I do that as a pre-compilation step. But I think my game is too small for this.</li>
+</ul>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
+<ul>
+<li>Mood-based abilities (Still need to implement Inspired and Sad mood abilities. I think I'll do Sad the latest because it requires me to implement disabling collision temporarily)</li>
+<li>Collecting letters, displaying letter content</li>
+<li>One way platforms</li>
+<li>A second level that has one way platforms, and an animated enemy</li>
+<li>Level transitions</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-
-                        <a rel="next" href="posts/rust/001_mpbt.html" class="mobile-nav-chapters next"
-                            title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                            <i class="fa fa-angle-right"></i>
+                        <a rel="prev" href="../../posts/mania_devlog/002_day_two.html" class="mobile-nav-chapters previous"
+                            title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <i class="fa fa-angle-left"></i>
                         </a>
+
 
                         <div style="clear: both"></div>
                     </nav>
@@ -202,11 +313,11 @@ Since the tool was meant to scan the a huge number of domains weekly, it had to 
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-
-                <a rel="next" href="posts/rust/001_mpbt.html" class="nav-chapters next" title="Next chapter"
-                    aria-label="Next chapter" aria-keyshortcuts="Right">
-                    <i class="fa fa-angle-right"></i>
+                <a rel="prev" href="../../posts/mania_devlog/002_day_two.html" class="nav-chapters previous" title="Previous chapter"
+                    aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <i class="fa fa-angle-left"></i>
                 </a>
+
             </nav>
 
         </div>
@@ -219,13 +330,13 @@ Since the tool was meant to scan the a huge number of domains weekly, it had to 
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
 
         <!-- Custom JS scripts -->
 

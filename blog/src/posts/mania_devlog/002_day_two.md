@@ -1,4 +1,4 @@
-# day one
+# day two: automatic hot reload, smashing jump, player states
 
 **Date**: 31.05.2025
 

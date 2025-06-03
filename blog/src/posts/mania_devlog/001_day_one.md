@@ -1,4 +1,4 @@
-# day one
+# day one: dev environment, camera zoom, frame-rate independence, mood states
 
 **Date**: 30.05.2025
 
