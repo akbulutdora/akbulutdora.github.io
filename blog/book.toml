@@ -4,13 +4,8 @@ language = "en"
 multilingual = false
 src = "src"
 title = "thoughtassault-blog"
-
-[build]
-build-dir = "../book"
-
 [output.html.playground]
 runnable = false
-
 [output.html]
 theme = "theme"
 default-theme = "thoughtassault"
