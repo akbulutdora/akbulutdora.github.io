@@ -1,0 +1,347 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js thoughtassault">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>day three: handle-based entity system, reading game data from json - thoughtassault-blog</title>
+
+
+    <!-- Custom HTML head -->
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../favicon.svg">
+    <link rel="shortcut icon" href="../favicon.png">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/chrome.css">
+    <link rel="stylesheet" href="../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../highlight.css">
+    <link rel="stylesheet" href="../tomorrow-night.css">
+    <link rel="stylesheet" href="../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+
+</head>
+
+<body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "thoughtassault";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('thoughtassault')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="hello.html">Hello</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Learning Rust</li><li class="chapter-item expanded "><a href="rust/001_mpbt.html"><strong aria-hidden="true">1.</strong> Passing messages between threads</a></li><li class="chapter-item expanded "><a href="rust/002_requesting_arbitrary_data.html"><strong aria-hidden="true">2.</strong> Improvement on message passing: Requesting arbitrary data</a></li><li class="chapter-item expanded "><a href="rust/003_generic_actor_model.html"><strong aria-hidden="true">3.</strong> Designing and Implementing a Generic Actor Model for Concurrency</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Flutter</li><li class="chapter-item expanded "><a href="flutter/001_input_toolbar.html"><strong aria-hidden="true">4.</strong> Implementing an Input Toolbar in Flutter</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Developer</li><li class="chapter-item expanded "><a href="developer/001_good_qs/gq.html"><strong aria-hidden="true">5.</strong> Job application questions I liked</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="developer/001_good_qs/bluecode.html"><strong aria-hidden="true">5.1.</strong> Bluecode</a></li><li class="chapter-item expanded "><a href="developer/001_good_qs/wingback.html"><strong aria-hidden="true">5.2.</strong> Wingback</a></li></ol></li><li class="chapter-item expanded "><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Tricks</li><li class="chapter-item expanded "><a href="tricks/001_post_files_through_curl.html"><strong aria-hidden="true">6.</strong> POSTing files using CURL</a></li><li class="chapter-item expanded affix "><li class="part-title">Upcarta</li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> What is Upcarta (to me)?</div></li><li class="chapter-item expanded affix "><li class="part-title">Philosophy</li><li class="chapter-item expanded "><a href="philosophy/001_foss_thm.html"><strong aria-hidden="true">8.</strong> Open Source Software and the Triple Helix Model of Science</a></li><li class="chapter-item expanded "><a href="philosophy/002_ai_kuhn.html"><strong aria-hidden="true">9.</strong> Does the Shift from Behavioral AI to Deep Learning Constitute a Kuhnian Paradigm Shift?</a></li><li class="chapter-item expanded affix "><li class="part-title">Mania Devlog</li><li class="chapter-item expanded "><a href="mania_devlog/001_day_one.html"><strong aria-hidden="true">10.</strong> day one: dev env, camera, frame-rate independence, moods</a></li><li class="chapter-item expanded "><a href="mania_devlog/002_day_two.html"><strong aria-hidden="true">11.</strong> day two: automatic hot reload, smashing jump, player states</a></li><li class="chapter-item expanded "><a href="mania_devlog/003_day_three.html"><strong aria-hidden="true">12.</strong> day three: handle-based entity system, reading game data from json</a></li><li class="chapter-item expanded affix "><li class="spacer"></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                            aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                            aria-label="Change theme" aria-haspopup="true" aria-expanded="false"
+                            aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme"
+                                    id="thoughtassault">Thoughtassault</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                            aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                            aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">thoughtassault-blog</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                            aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="day-three-handle-based-entity-system-reading-game-data-from-json"><a class="header" href="#day-three-handle-based-entity-system-reading-game-data-from-json">day three: handle-based entity system, reading game data from json</a></h1>
+<p><strong>Date</strong>: 03.06.2025</p>
+<p><strong>Session Duration</strong>: 11:00 - 17:00</p>
+<h2 id="progress"><a class="header" href="#progress">Progress</a></h2>
+<ol>
+<li><strong>Handle-Based Entity System</strong>
+I implemented Karl Zylinski's <a href="https://www.youtube.com/watch?v=MzR1us2nZPY">Static Handle Maps</a> for my entity system. I migrated my Player to be an Entity. The implementation isn't complete. I still need to migrate the animation, but that's another day's work.</li>
+</ol>
+<pre><code class="language-odin">Entity_Type :: enum {
+	None,
+	Player,
+	Letter,
+}
+
+Entity_Type_Data :: union {
+	Player_Data,
+	Letter_Data,
+}
+
+Letter_Data :: struct {
+	id:       string,
+	response: string,
+	content:  string,
+	mood:     PlayerMood,
+}
+
+TextureName :: enum {
+	Player,
+	Letter,
+}
+
+Player_Data :: struct {
+	state:         PlayerState,
+	grounded:      bool,
+	flipped:       bool,
+	is_running:    bool,
+	mood:          PlayerMood,
+	idle_anim:     AnimatedSprite,
+	run_anim:      AnimatedSprite,
+	jump_anim:     AnimatedSprite,
+	anim_instance: AnimationInstance,
+}
+
+Entity :: struct {
+	handle:   Entity_Handle,
+	type:     Entity_Type,
+	pos:      Vec2,
+	vel:      Vec2,
+	size:     Vec2,
+	color:    rl.Color,
+	tex:      TextureName,
+	// anim: Animation,
+	collider: Rect,
+	disabled: bool,
+	data:     Entity_Type_Data,
+}
+</code></pre>
+<ol start="2">
+<li><strong>Reading Game Data From Json</strong>
+I needed the letters to contain data, and my current ASCII-based level data can't support this. Therefore I decided to store these as JSON.</li>
+</ol>
+<p>Here is how I store the data for now:</p>
+<pre><code class="language-json">{
+  "data": [
+    {
+      "level_id": 1,
+      "letters": [
+        {
+          "id": "1_1",
+          "pos": [4, 10],
+          "content": "A",
+          "mood": "angry",
+          "response": "I am angry!"
+        },
+        {
+          "id": "1_2",
+          "pos": [5, 13],
+          "content": "B",
+          "mood": "inspired",
+          "response": "I am happy!"
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p>And here is how I load it.</p>
+<pre><code class="language-odin">LEVEL_COUNT :: 32
+LETTER_COUNT :: 8
+
+@(private = "file")
+Letter_Data :: struct {
+	id:       string,
+	pos:      Vec2,
+	content:  string,
+	mood:     string,
+	response: string,
+}
+
+@(private = "file")
+Level_Data :: struct {
+	level_id: int,
+	letters:  [LETTER_COUNT]Letter_Data,
+}
+
+@(private = "file")
+Level_Letter_Data :: struct {
+	data: [LEVEL_COUNT]Level_Data,
+}
+
+parse_letter_data_json :: proc() -&gt; Level_Letter_Data {
+	abs_path, _ := path.abs("./", context.temp_allocator)
+	file_name := fmt.tprintf("%v/assets/levels/letter_data.json", abs_path)
+
+	data, ok := os.read_entire_file_from_filename(file_name)
+	if !ok {
+		panic("Failed to load the letter data file!")
+	}
+	defer delete(data)
+
+	level_letter_data: Level_Letter_Data
+	unmarshal_err := json.unmarshal(data, &amp;level_letter_data, allocator = context.temp_allocator)
+	if unmarshal_err != nil {
+		panic("Failed to unmarshal letter json file!")
+	}
+
+	return level_letter_data
+}
+</code></pre>
+<h2 id="notes"><a class="header" href="#notes">Notes</a></h2>
+<ul>
+<li>The structure of all this could change. I am still learning and figuring out how to do things.</li>
+<li>I am slightly aware that I could optimize game data loading by storing them as binary, since parsing JSON is slow. Maybe I do that as a pre-compilation step. But I think my game is too small for this.</li>
+</ul>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
+<ul>
+<li>Mood-based abilities (Still need to implement Inspired and Sad mood abilities. I think I'll do Sad the latest because it requires me to implement disabling collision temporarily)</li>
+<li>Collecting letters, displaying letter content</li>
+<li>One way platforms</li>
+<li>A second level that has one way platforms, and an animated enemy</li>
+<li>Level transitions</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <a rel="prev" href="../mania_devlog/002_day_two.html" class="mobile-nav-chapters previous"
+                            title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                <a rel="prev" href="../mania_devlog/002_day_two.html" class="nav-chapters previous" title="Previous chapter"
+                    aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+</body>
+
+</html>
