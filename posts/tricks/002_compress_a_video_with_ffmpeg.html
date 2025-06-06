@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>POSTing files using CURL - thoughtassault-blog</title>
+        <title>Compress a video using FFMPEG - thoughtassault-blog</title>
 
 
         <!-- Custom HTML head -->
@@ -166,24 +166,52 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>Here is a small snippet I used today to send some files using curl. I usually use Postman to test my API, but it failed miserably to send a couple of files. Here is what I did using curl.</p>
-<pre><code class="language-sh">curl \
--X POST -H "Accept: application/json" \
--F 'attachments[]=@Chest.pdf' \
--F 'attachments[]=@Core.pdf' \
--F 'body=hello world' \
-myapi.test/api/endpoint
+                        <p>Here is the chain of commands I used to reduce the size of a video on my mac. I asked claude, so maybe there is room for improvement. It's funny how you can't do this with the export options of macos.</p>
+<p>get video info:</p>
+<pre><code>ffprobe "video.mov"
 </code></pre>
+<p>get video original size:</p>
+<pre><code>ls -lh "video.mov"
+</code></pre>
+<p>compress:</p>
+<pre><code>ffmpeg -i "video.mov" -vf "scale=1280:720" -r 30 -c:v libx264 -crf 28 -c:a aac -b:a 96k "video_compressed.mov"
+</code></pre>
+<p>breakdown of the parameters:</p>
+<pre><code>-i: Input file
+-vf "scale=1280:720": Resize to 720p
+-r 30: Reduce frame rate to 30fps
+-c:v libx264: Use H.264 video codec
+-crf 28: Constant Rate Factor 28 (range is 0-51, lower is better quality, 18-28 is usually good)
+-c:a aac: Use AAC audio codec
+-b:a 96k: Audio bitrate 96kbps
+</code></pre>
+<p>How it could be better:</p>
+<ol>
+<li>For screencasts with text, we could use a lower CRF (maybe 23-25) and try these additional options:</li>
+</ol>
+<pre><code>ffmpeg -i input.mov -vf "scale=1280:720" -r 30 -c:v libx264 -crf 23 -preset slower -tune stillimage -c:a aac -b:a 96k output.mov
+</code></pre>
+<p>breakdown:</p>
+<pre><code>-preset slower: Better compression at the cost of encoding time
+-tune stillimage: Optimized for screencast-type content
+</code></pre>
+<ol start="2">
+<li>Or if you want to maintain even better text quality while still getting good compression:</li>
+</ol>
+<pre><code>ffmpeg -i input.mov -vf "scale=1280:720" -r 30 -c:v libx264 -crf 20 -preset veryslow -tune stillimage -profile:v high -c:a aac -b:a 96k output.mov
+</code></pre>
+<p>This would produce a larger file (probably 3-5MB) but with noticeably better text quality.</p>
+<p>The reason my original command produced such a small file (912KB) with still-readable quality is that H.264 is particularly good at compressing screen recordings, especially when there's limited motion. The macOS export feature uses more generic settings that don't take advantage of these optimization opportunities.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../posts/developer/001_good_qs/wingback.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../posts/tricks/001_post_files_through_curl.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../posts/tricks/002_compress_a_video_with_ffmpeg.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../posts/philosophy/001_foss_thm.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -193,11 +221,11 @@ myapi.test/api/endpoint
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../posts/developer/001_good_qs/wingback.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../posts/tricks/001_post_files_through_curl.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../posts/tricks/002_compress_a_video_with_ffmpeg.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../posts/philosophy/001_foss_thm.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

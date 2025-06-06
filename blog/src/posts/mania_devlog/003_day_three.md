@@ -136,7 +136,6 @@ parse_letter_data_json :: proc() -> Level_Letter_Data {
 ```
 
 ## Notes
-
 - The structure of all this could change. I am still learning and figuring out how to do things.
 - I am slightly aware that I could optimize game data loading by storing them as binary, since parsing JSON is slow. Maybe I do that as a pre-compilation step. But I think my game is too small for this.
 

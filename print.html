@@ -817,6 +817,42 @@ Note: Technically, its uses are not limited to social media, but what I have see
 -F 'body=hello world' \
 myapi.test/api/endpoint
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><p>Here is the chain of commands I used to reduce the size of a video on my mac. I asked claude, so maybe there is room for improvement. It's funny how you can't do this with the export options of macos.</p>
+<p>get video info:</p>
+<pre><code>ffprobe "video.mov"
+</code></pre>
+<p>get video original size:</p>
+<pre><code>ls -lh "video.mov"
+</code></pre>
+<p>compress:</p>
+<pre><code>ffmpeg -i "video.mov" -vf "scale=1280:720" -r 30 -c:v libx264 -crf 28 -c:a aac -b:a 96k "video_compressed.mov"
+</code></pre>
+<p>breakdown of the parameters:</p>
+<pre><code>-i: Input file
+-vf "scale=1280:720": Resize to 720p
+-r 30: Reduce frame rate to 30fps
+-c:v libx264: Use H.264 video codec
+-crf 28: Constant Rate Factor 28 (range is 0-51, lower is better quality, 18-28 is usually good)
+-c:a aac: Use AAC audio codec
+-b:a 96k: Audio bitrate 96kbps
+</code></pre>
+<p>How it could be better:</p>
+<ol>
+<li>For screencasts with text, we could use a lower CRF (maybe 23-25) and try these additional options:</li>
+</ol>
+<pre><code>ffmpeg -i input.mov -vf "scale=1280:720" -r 30 -c:v libx264 -crf 23 -preset slower -tune stillimage -c:a aac -b:a 96k output.mov
+</code></pre>
+<p>breakdown:</p>
+<pre><code>-preset slower: Better compression at the cost of encoding time
+-tune stillimage: Optimized for screencast-type content
+</code></pre>
+<ol start="2">
+<li>Or if you want to maintain even better text quality while still getting good compression:</li>
+</ol>
+<pre><code>ffmpeg -i input.mov -vf "scale=1280:720" -r 30 -c:v libx264 -crf 20 -preset veryslow -tune stillimage -profile:v high -c:a aac -b:a 96k output.mov
+</code></pre>
+<p>This would produce a larger file (probably 3-5MB) but with noticeably better text quality.</p>
+<p>The reason my original command produced such a small file (912KB) with still-readable quality is that H.264 is particularly good at compressing screen recordings, especially when there's limited motion. The macOS export feature uses more generic settings that don't take advantage of these optimization opportunities.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="term-paper-on-open-source-software-and-the-triple-helix-model-of-science"><a class="header" href="#term-paper-on-open-source-software-and-the-triple-helix-model-of-science">Term paper on Open-source Software and the Triple Helix Model of Science</a></h1>
 <blockquote>
 <p>This is a term paper I wrote for the Science and Society course at Sabanci University in the spring of 2022.</p>

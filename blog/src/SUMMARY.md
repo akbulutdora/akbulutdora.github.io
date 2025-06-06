@@ -24,6 +24,7 @@
 
 # Tricks
 - [POSTing files using CURL](./posts/tricks/001_post_files_through_curl.md)
+- [Compress a video using FFMPEG](./posts/tricks/002_compress_a_video_with_ffmpeg.md)
  
 # Upcarta
 - [What is Upcarta (to me)?]()
