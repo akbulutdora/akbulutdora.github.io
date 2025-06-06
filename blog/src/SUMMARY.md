@@ -17,7 +17,7 @@
 # Developer
 - [Job application questions I liked](./posts/developer/001_good_qs/gq.md)
   - [Bluecode](./posts/developer/001_good_qs/bluecode.md)
-  - [Wingback](./posts/developer/001_good_qs/wingback.md) 
+  - [Wingback](./posts/developer/001_good_qs/wingback.md)
 <!-- - [Dev surveys]() -->
 <!-- - [Dev surveys](./posts/developer/002_dev_surveys/dev_surveys.md) -->
 ----
@@ -25,7 +25,7 @@
 # Tricks
 - [POSTing files using CURL](./posts/tricks/001_post_files_through_curl.md)
 - [Compress a video using FFMPEG](./posts/tricks/002_compress_a_video_with_ffmpeg.md)
- 
+
 # Upcarta
 - [What is Upcarta (to me)?]()
 
@@ -37,4 +37,5 @@
 - [day one: dev env, camera, frame-rate independence, moods](./posts/mania_devlog/001_day_one.md)
 - [day two: automatic hot reload, smashing jump, player states](./posts/mania_devlog/002_day_two.md)
 - [day three: handle-based entity system, reading game data from json](./posts/mania_devlog/003_day_three.md)
+- [day four: UI for letters](./posts/mania_devlog/004.ui_for_letters.md)
 ----

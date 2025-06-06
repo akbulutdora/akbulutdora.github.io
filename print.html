@@ -1317,6 +1317,55 @@ parse_letter_data_json :: proc() -&gt; Level_Letter_Data {
 <li>A second level that has one way platforms, and an animated enemy</li>
 <li>Level transitions</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="day-four-letter-ui-scaling-the-ui-displaying-collected-letters-and-disabling-input"><a class="header" href="#day-four-letter-ui-scaling-the-ui-displaying-collected-letters-and-disabling-input">day four: letter ui, scaling the ui, displaying collected letters and disabling input</a></h1>
+<p><strong>Date</strong>: 06.06.2025</p>
+<p><strong>Session Duration</strong>: 16:00 - 18:00</p>
+<h2 id="progress-3"><a class="header" href="#progress-3">Progress</a></h2>
+<ol>
+<li><strong>Letter UI</strong>
+I list collected letters as UI elements on the top left of my screen. Later on, I will use their indices for player to re-read them. I also made a simple UI for the letter that displays the content and frames it with the color of the mood. I wrote very basic code, so there is a lot of duplication for the paddings.</li>
+</ol>
+<p>When the player collects a letter, it is set as the active letter. For this, I added a new state to the player: PlayerStateReadingLetter. While in this state, the ui draws the letter</p>
+<pre><code class="language-odin">PlayerState :: union #no_nil {
+	PlayerStateNormal,
+	PlayerStateJumping,
+	PlayerStateSmashing,
+	PlayerStateDashing,
+	PlayerStateReadingLetter,
+}
+
+PlayerStateReadingLetter :: struct {
+	active_letter: Entity_Handle,
+}
+</code></pre>
+<ol start="2">
+<li><strong>Disabling Input</strong>
+I disabled all input except for Enter while reading letter. I did this very brutally for now</li>
+</ol>
+<pre><code class="language-odin">player := hm.get(&amp;g_mem.entities, g_mem.player)
+	player_data, _ := player.data.(Player_Data)
+	if _, ok := player_data.state.(PlayerStateReadingLetter); ok {
+		input = {
+			enter = input.enter,
+		}
+	}
+</code></pre>
+<ol start="3">
+<li><strong>Scaling the UI</strong>
+I had to do quite a bit of UI programming. The UI had to be scaled for the user's screen size, and things got messy in the beginning. But I figured it out.</li>
+</ol>
+<h2 id="notes-3"><a class="header" href="#notes-3">Notes</a></h2>
+<ul>
+<li>I really don't think this code is going to scale. Getting the player entity takes too much effort every time because I am just using the bare-bones handle map functions. I should write a function to get it easily.</li>
+<li>I might need a simple system for layouts, paddings, margins, and alignment.</li>
+</ul>
+<h2 id="next-steps-3"><a class="header" href="#next-steps-3">Next Steps</a></h2>
+<ul>
+<li>Mood-based abilities (Still need to implement Inspired and Sad mood abilities. I think I'll do Sad the latest because it requires me to implement disabling collision temporarily)</li>
+<li>One way platforms</li>
+<li>A second level that has one way platforms, and an animated enemy</li>
+<li>Level transitions</li>
+</ul>
 
                     </main>
 
