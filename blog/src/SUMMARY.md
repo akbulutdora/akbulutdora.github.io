@@ -38,4 +38,5 @@
 - [day two: automatic hot reload, smashing jump, player states](./posts/mania_devlog/002_day_two.md)
 - [day three: handle-based entity system, reading game data from json](./posts/mania_devlog/003_day_three.md)
 - [day four: UI for letters](./posts/mania_devlog/004.ui_for_letters.md)
+- [day five: platform tiles and inspired special](./posts/mania_devlog/005.platform_tiles_and_inspired_special.md)
 ----
